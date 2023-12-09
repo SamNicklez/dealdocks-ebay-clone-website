@@ -86,9 +86,9 @@ class Item < ApplicationRecord
                 Item.all
               end
 
-    unless results.empty? || params[:user_id].present?
-      results = results.includes(:purchase).where(purchases: { id: nil })
-    end
+    # unless results.empty? || params[:user_id].present?
+    #   results = results.includes(:purchase).where(purchases: { id: nil })
+    # end
 
     if params[:seller].present?
       seller = User.find_by(username: params[:seller])
@@ -119,9 +119,9 @@ class Item < ApplicationRecord
                 Item.all
               end
 
-    unless results.empty?
-      results = results.includes(:purchase).where(purchases: { id: nil })
-    end
+    # unless results.empty?
+    #   results = results.includes(:purchase).where(purchases: { id: nil })
+    # end
 
     if params[:seller].present?
       seller = User.find_by(username: params[:seller])
