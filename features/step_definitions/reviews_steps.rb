@@ -23,3 +23,8 @@ end
 Then(/^I should not see "([^"]*)"$/) do |arg|
   expect(page).to_not have_content(arg)
 end
+
+And(/^I search for the "([^"]*)" item$/) do |arg|
+  user = User.find_by(username: 'review_test_user')
+  visit search_path(search_term: arg,  user_id: user.id)
+end
