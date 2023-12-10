@@ -11,7 +11,7 @@ end
 # given I search for an item
 Given(/^I search for "(.*)"$/) do |search_term|
   # make a search request
-  visit search_path(search_term: search_term)
+  visit search_path(search_term: search_term, user_id: @user.id)
 end
 
 Then(/^I should see the item "(.*)"$/) do |item_title|
