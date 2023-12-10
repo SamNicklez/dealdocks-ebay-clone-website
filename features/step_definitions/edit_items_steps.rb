@@ -56,7 +56,7 @@ Then(/^I should see the item page for "([^"]*)"$/) do |arg|
     # Ensure that the page has the item's description
     expect(page).to have_content(item.description)
     # Ensure that the page has the item's categories
-    expect(page).to have_content(item.categories.map(&:name).join(', '))
+    expect(page).to have_content(item.categories.map(&:name).join(' '))
     # Ensure that the page has the item's price
     expect(page).to have_content(item.price)
 end

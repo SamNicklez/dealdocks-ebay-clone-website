@@ -26,7 +26,7 @@ Feature: Reviewing an item
     And I fill in "Your Review" with "I had a great experience with this seller"
     And I click the "Submit Review" button
     Then I am logged in as "review_test_user2"
-    And I search for "Baseball"
+    And I search for the "Baseball" item
     And I click on the "Baseball" link
     Then I should see "Great Experience"
     Then I should see "I had a great experience with this seller"
@@ -86,7 +86,7 @@ Feature: Reviewing an item
       Then I should see "Great Experience"
       Then I should see "I had a great experience with this seller"
       Then I should see "★ ★ ★ ★ ★"
-      And I search for "Baseball"
+      And I search for the "Baseball" item
       And I click on the "Baseball" link
       Then I should not see the review form
       And I visit the profile page for "mainuser"
