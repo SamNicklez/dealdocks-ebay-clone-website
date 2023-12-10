@@ -59,7 +59,12 @@ class User < ApplicationRecord
 
     # If there are less than 4 bookmarked items, fill the rest with other items that have not been purchased
     if num_items < 4
-      additional_items = Item.includes(:purchase).where.not(user: self).where(purchases: { item_id: nil }).limit(4 - num_items)
+      excluded_item_ids = suggested_items.map(&:id)
+      additional_items = Item.includes(:purchase)
+                             .where.not(user: self)
+                              .where.not(id: excluded_item_ids)
+                             .where(purchases: { item_id: nil })
+                             .limit(4 - num_items)
       suggested_items += additional_items
     end
     suggested_items

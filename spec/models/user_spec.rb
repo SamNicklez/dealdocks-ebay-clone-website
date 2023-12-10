@@ -216,6 +216,11 @@ describe 'get_users_suggested_items' do
         allow(Item).to receive(:includes).and_return(item_group)
         #allow(Item).to receive(:where).and_return(item_group)
         allow(item_group).to receive(:not).and_return(item_group)
+        #allow(suggested_items).to receive(:map).and_return(item_group)
+
+        allow(item_group).to receive(:map).and_return(item_group)
+
+
 
         #allow(Item).to receive(:limit).and_return(item_group)
         expect(user.get_users_suggested_items).to eq([item, item2, item, item2])
