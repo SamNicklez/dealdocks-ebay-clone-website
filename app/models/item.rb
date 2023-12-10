@@ -86,7 +86,10 @@ class Item < ApplicationRecord
                 Item.all
               end
 
-    results = results.includes(:purchase).where(purchases: { id: nil })
+    unless results.empty? || params[:user_id].present?
+      results = results.includes(:purchase).where(purchases: { id: nil })
+    end
+
     if params[:seller].present?
       seller = User.find_by(username: params[:seller])
       results = seller ? results.where("items.user_id = ?", seller.id) : []
@@ -115,6 +118,10 @@ class Item < ApplicationRecord
               else
                 Item.all
               end
+
+    unless results.empty?
+      results = results.includes(:purchase).where(purchases: { id: nil })
+    end
 
     if params[:seller].present?
       seller = User.find_by(username: params[:seller])
@@ -211,7 +218,9 @@ class Item < ApplicationRecord
       # Update categories
       self.add_categories(item_updates[:category_ids])
 
-      self.add_images(item_updates[:images])
+      if item_updates[:images].present?
+        self.add_images(item_updates[:images])
+      end
 
       # Removing images if the user selected to remove any
       if remove_images.present?
